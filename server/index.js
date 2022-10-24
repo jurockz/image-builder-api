@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 
 // DB
-const DB_URL = "mongodb://ubuntu:ubuntu123@127.0.0.1:27017/imageBuilder";
+const DB_URL = "mongodb://127.0.0.1:27017/imageBuilder";
 mongoose
   .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
