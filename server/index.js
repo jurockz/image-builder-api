@@ -60,3 +60,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
+
+app.get("/api/greet", (req, res) => {
+  res.json({ message: "greetings!" });
+});
