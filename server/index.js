@@ -59,6 +59,16 @@ app.post("/api/image", upload.single("file"), function (req, res) {
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
+  ComponentModel.create(
+    { title: "test123TITLE", path: "/.../image" },
+    function (err, instance) {
+      if (err) {
+        console.log("ERROR");
+        return handleError(err);
+      }
+      // saved!
+    }
+  );
 });
 
 app.post("/api/greet", function (req, res) {
