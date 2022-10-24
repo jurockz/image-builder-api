@@ -46,7 +46,10 @@ app.post("/api/image", upload.single("file"), function (req, res) {
   ComponentModel.create(
     { title: req.body.title, path: "/.../image" },
     function (err, instance) {
-      if (err) return handleError(err);
+      if (err) {
+        console.log("ERROR");
+        return handleError(err);
+      }
       // saved!
     }
   );
