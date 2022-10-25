@@ -38,11 +38,12 @@ const storage = multer.diskStorage({
     cb(null, "../client/images");
   },
   filename: (req, file, cb) => {
+    console.log("STORAGE body", req.body);
     cb(null, file.originalname);
   },
 });
 
-const upload = multer({ dest: "../client/images" });
+const upload = multer({ storage: storage });
 
 app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("API IMAGE STARTET");
