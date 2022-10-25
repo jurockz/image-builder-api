@@ -40,7 +40,6 @@ const storage = multer.diskStorage({
     cb(null, "../image-builder-client/images");
   },
   filename: (req, file, cb) => {
-    console.log("STORAGE body", req.body);
     cb(null, file.originalname);
   },
 });
@@ -48,21 +47,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post("/api/image", upload.single("file"), function (req, res) {
-  console.log("API IMAGE STARTET");
-  console.log("File", req.file);
-  console.log("body", req.body);
   const oldPath = req.file.path;
-  console.log("oldPath", oldPath);
-  console.log("originalname", req.file.originalname);
   const newPath = req.file.path.replace(
     req.file.originalname,
     req.body.title + path.extname(req.file.originalname)
   );
-  console.log("newPath", newPath);
   fs.renameSync(oldPath, newPath);
   ComponentModel.create(
     { title: req.body.title, path: newPath },
     function (err, instance) {
+      console.log(instance);
       if (err) {
         return handleError(err);
       }
