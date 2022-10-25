@@ -2,12 +2,14 @@ const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const PORT = 3001;
 
 const app = express();
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // DB
 const DB_URL = "mongodb://127.0.0.1:27017/imageBuilder";
@@ -44,6 +46,7 @@ const upload = multer({ storage: storage });
 
 app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("API IMAGE STARTET");
+  console.log("title", req.body);
   console.log("title", req.body.title);
   ComponentModel.create(
     { title: req.body.title, path: "/.../image" },
