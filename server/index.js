@@ -63,7 +63,11 @@ app.post("/api/image", upload.single("file"), function (req, res) {
       }
     }
   );
-  res.json({ message: "File got uploaded" });
+  res.json({
+    message: "File got uploaded",
+    file: req.file,
+    title: req.body.title,
+  });
 });
 
 app.get("/api", (req, res) => {
