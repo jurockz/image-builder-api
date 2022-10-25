@@ -63,7 +63,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
       }
     }
   );
-  const pathname = path.join(__dirname, newPath);
+  const pathname = path.join(__dirname, newPath).replace("/server", "");
   res.sendFile(pathname);
 });
 
