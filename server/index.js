@@ -38,7 +38,7 @@ const ComponentModel = mongoose.model("components", ComponentSchema);
 // Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../image-builder-client/images");
+    cb(null, "./assets/images");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -63,11 +63,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
       }
     }
   );
-  res.json({
-    message: "File got uploaded",
-    file: req.file,
-    title: req.body.title,
-  });
+  res.sendFile(newPath);
 });
 
 app.get("/api", (req, res) => {
