@@ -44,16 +44,16 @@ const upload = multer({ storage: storage });
 
 app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("API IMAGE STARTET");
-  // ComponentModel.create(
-  //   { title: req.body.title, path: "/.../image" },
-  //   function (err, instance) {
-  //     if (err) {
-  //       console.log("ERROR");
-  //       return handleError(err);
-  //     }
-  //     // saved!
-  //   }
-  // );
+  ComponentModel.create(
+    { title: req.body.title, path: "/.../image" },
+    function (err, instance) {
+      if (err) {
+        console.log("ERROR");
+        return handleError(err);
+      }
+      // saved!
+    }
+  );
   res.json({ message: "File got uploaded" });
 });
 
