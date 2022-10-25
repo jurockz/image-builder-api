@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const PORT = 3001;
 
@@ -47,16 +48,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post("/api/image", upload.single("file"), function (req, res) {
+  const id = crypto.randomBytes(16).toString("hex");
   const oldPath = req.file.path;
   const newPath = req.file.path.replace(
     req.file.originalname,
-    req.body.title + path.extname(req.file.originalname)
+    req.body.title + "_" + id + path.extname(req.file.originalname)
   );
   fs.renameSync(oldPath, newPath);
   ComponentModel.create(
     { title: req.body.title, path: newPath },
     function (err, instance) {
-      console.log(instance);
       if (err) {
         return handleError(err);
       }
