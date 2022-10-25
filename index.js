@@ -63,14 +63,5 @@ app.post("/api/image", upload.single("file"), function (req, res) {
       }
     }
   );
-  const pathname = path.join(__dirname, newPath).replace("/server", "");
-  res.sendFile(pathname);
-});
-
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
-
-app.post("/api/greet", function (req, res) {
-  res.json({ message: "greetings" });
+  res.json({ message: "file uploaded", path: newPath });
 });
