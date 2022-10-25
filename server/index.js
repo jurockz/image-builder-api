@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const fs = require("fs");
 
 const PORT = 3001;
 
@@ -35,7 +36,7 @@ const ComponentModel = mongoose.model("components", ComponentSchema);
 // Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../client/images");
+    cb(null, "../image-builder-client/images");
   },
   filename: (req, file, cb) => {
     console.log("STORAGE body", req.body);
@@ -49,8 +50,11 @@ app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("API IMAGE STARTET");
   console.log("File", req.file);
   console.log("body", req.body);
+  const oldPath = req.file.path;
+  const newPath = req.file.path.replace(req.file.originalname);
+  fs.renameSync(oldPath, newPath);
   ComponentModel.create(
-    { title: req.body.title, path: "/.../image" },
+    { title: req.body.title, path: newPath },
     function (err, instance) {
       if (err) {
         return handleError(err);
