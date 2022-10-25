@@ -50,7 +50,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("Files", req.files);
   console.log("body", req.body);
   ComponentModel.create(
-    { title: req.body.title, path: "/.../image" },
+    { title: req.body.name, path: "/.../image" },
     function (err, instance) {
       if (err) {
         console.log("ERROR");
