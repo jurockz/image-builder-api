@@ -57,12 +57,15 @@ app.post("/api/image", upload.single("file"), function (req, res) {
   );
   fs.renameSync(oldPath, newPath);
   ComponentModel.create(
-    { title: req.body.title, path: newPath },
+    { title: req.body.title, path: "http://51.195.116.58:3001/" + newPath },
     function (err, instance) {
       if (err) {
         return handleError(err);
       }
     }
   );
-  res.json({ message: "file uploaded", path: newPath });
+  res.json({
+    message: "file uploaded",
+    path: "http://51.195.116.58:3001/" + newPath,
+  });
 });
