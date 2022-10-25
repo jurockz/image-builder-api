@@ -67,5 +67,6 @@ app.post("/api/image", upload.single("file"), function (req, res) {
   res.json({
     message: "file uploaded",
     path: "http://51.195.116.58:3001/" + newPath,
+    title: req.body.title,
   });
 });
