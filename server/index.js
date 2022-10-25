@@ -47,16 +47,13 @@ const upload = multer({ dest: "../client/images" });
 app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("API IMAGE STARTET");
   console.log("File", req.file);
-  console.log("Files", req.files);
   console.log("body", req.body);
   ComponentModel.create(
-    { title: req.body.name, path: "/.../image" },
+    { title: req.body.title, path: "/.../image" },
     function (err, instance) {
       if (err) {
-        console.log("ERROR");
         return handleError(err);
       }
-      // saved!
     }
   );
   res.json({ message: "File got uploaded" });
