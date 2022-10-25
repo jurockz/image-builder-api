@@ -47,8 +47,8 @@ const upload = multer({ dest: "../client/images" });
 app.post("/api/image", upload.single("file"), function (req, res) {
   console.log("API IMAGE STARTET");
   console.log("File", req.file);
-  console.log("File", req.files);
-  console.log("File", req.body);
+  console.log("Files", req.files);
+  console.log("body", req.body);
   ComponentModel.create(
     { title: req.body.title, path: "/.../image" },
     function (err, instance) {
