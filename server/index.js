@@ -3,6 +3,7 @@ const multer = require("multer");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const path = require("path");
 
 const PORT = 3001;
 
@@ -53,7 +54,10 @@ app.post("/api/image", upload.single("file"), function (req, res) {
   const oldPath = req.file.path;
   console.log("oldPath", oldPath);
   console.log("originalname", req.file.originalname);
-  const newPath = req.file.path.replace(req.file.originalname);
+  const newPath = req.file.path.replace(
+    req.file.originalname,
+    req.body.title + path.extname(req.file.originalname)
+  );
   console.log("newPath", newPath);
   fs.renameSync(oldPath, newPath);
   ComponentModel.create(
