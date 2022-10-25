@@ -13,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/public/images", express.static(__dirname + "/public/images/"));
 
 // DB
 const DB_URL = "mongodb://127.0.0.1:27017/imageBuilder";
