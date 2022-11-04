@@ -4,8 +4,6 @@ module.exports = function (mongoose) {
     title: String,
     path: String,
   });
-  // Scene
-  const SceneSchema = new Schema({});
 
   // All Modals
   var models = {
