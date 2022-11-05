@@ -71,7 +71,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
 // Hierarchy
 
 app.post("/api/hierarchy/save", upload.single("file"), function (req, res) {
-  console.log(JSON.parse(req.body));
+  console.log(req.body);
 
   // models.HierarchyModel.create()
   // res.json({});
