@@ -6,26 +6,34 @@ module.exports = function (mongoose) {
     path: String,
   });
   // hierarchy
+  const SpecificSchema = new Schema({
+    type: Map,
+    of: Schema.Types.Mixed,
+  });
+
+  const ScaleSchema = new Schema({
+    width: Number,
+    height: Number,
+  });
+
+  const PositionSchema = new Schema({
+    x: Number,
+    y: Number,
+  });
+
+  const ObjectSchema = new Schema({
+    transform: {
+      localPosition: PositionSchema,
+      localRotation: Number,
+      localScale: ScaleSchema,
+    },
+    zIndex: Number,
+    specific: SpecificSchema,
+  });
+
   const HierarchySchema = new Schema({
     type: Map,
-    of: new Schema({
-      transform: {
-        localPosition: {
-          x: Number,
-          y: Number,
-        },
-        localRotation: Number,
-        localScale: {
-          width: Number,
-          height: Number,
-        },
-      },
-      zIndex: Number,
-      specific: {
-        type: Map,
-        of: Schema.Types.Mixed,
-      },
-    }),
+    of: ObjectSchema,
   });
 
   // All Modals
