@@ -67,3 +67,12 @@ app.post("/api/image", upload.single("file"), function (req, res) {
     title: req.body.title,
   });
 });
+
+// Hierarchy
+
+app.post("/api/hierarchy/save", upload.single("file"), function (req, res) {
+  console.log(req.body);
+
+  // models.HierarchyModel.create()
+  // res.json({});
+});
