@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server-start-api": "npm install && nohup node server/index.js",
-    "start": "node index.js",
-    "build": "npm install"
+    "start": "npm install && node index.js"
   },
   "keywords": [],
   "author": "",
