@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { json } = require("express");
 
 const PORT = 3001;
 
@@ -71,8 +72,8 @@ app.post("/api/image", upload.single("file"), function (req, res) {
 // Hierarchy
 
 app.post("/api/hierarchy/save", upload.single("file"), function (req, res) {
-  console.log(req.body);
-
+  console.log(JSON.parse(req.body));
+  console.log(req.body.mainGrid.transform.localScale.width);
   // models.HierarchyModel.create()
   // res.json({});
 });
