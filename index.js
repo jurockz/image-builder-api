@@ -31,6 +31,8 @@ mongoose
 
 const models = require("./models")(mongoose);
 
+// IMAGE
+
 // Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
