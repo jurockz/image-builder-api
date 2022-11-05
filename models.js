@@ -9,7 +9,6 @@ module.exports = function (mongoose) {
   const HierarchySchema = new Schema({
     type: Map,
     of: new Schema({
-      type: String,
       transform: {
         localPosition: {
           x: Number,
