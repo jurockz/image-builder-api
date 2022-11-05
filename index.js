@@ -71,9 +71,8 @@ app.post("/api/image", upload.single("file"), function (req, res) {
 
 // Hierarchy
 
-app.post("/api/hierarchy/save", upload.single("file"), function (req, res) {
+app.post("/api/hierarchy/save", function (req, res) {
   const parsedData = JSON.parse(JSON.stringify(req.body));
-  // console.log(parsedData.mainGrid);
   models.HierarchyModel.create(parsedData);
   res.json("uploaded");
 });
