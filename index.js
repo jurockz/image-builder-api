@@ -28,8 +28,13 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-const models = require("./models")(mongoose);
+// DB SCHEMA
+const Schema = mongoose.Schema;
+const ComponentSchema = new Schema({
+  title: String,
+  path: String,
+});
+const ComponentModel = mongoose.model("components", ComponentSchema);
 
 // Multer
 const storage = multer.diskStorage({
@@ -51,7 +56,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
     req.body.title + "_" + id + path.extname(req.file.originalname)
   );
   fs.renameSync(oldPath, newPath);
-  models.ComponentModel.create(
+  ComponentModel.create(
     { title: req.body.title, path: "http://51.195.116.58:3001/" + newPath },
     function (err, instance) {
       if (err) {
