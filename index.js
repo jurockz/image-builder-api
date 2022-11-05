@@ -73,9 +73,7 @@ app.post("/api/image", upload.single("file"), function (req, res) {
 
 app.post("/api/hierarchy/save", upload.single("file"), function (req, res) {
   const parsedData = JSON.parse(JSON.stringify(req.body));
-  console.log(parsedData.mainGrid);
   // console.log(parsedData.mainGrid);
-  // console.log(req.body.mainGrid.transform.localScale.width);
-  // models.HierarchyModel.create()
-  // res.json({});
+  models.HierarchyModel.create(parsedData);
+  res.json("uploaded");
 });
